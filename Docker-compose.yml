@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root   # MySQL root password
+      MYSQL_DATABASE: schoolmgmt  # Database to initialize
+    ports:
+      - "3307:3306"
+    networks:
+      - mysqlnetwork
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s   # Check every 10 seconds
+      timeout: 5s     # Timeout after 5 seconds
+      retries: 3      # Mark as unhealthy after 3 failed attempts
+      start_period: 30s  # Wait 30 seconds before starting health checks
+
+  java:
+    build:
+      context: .
+    container_name: schoolmgmtsys
+    ports:
+      - "9090:9090"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB_NAME: schoolmgmt
+    networks:
+      - mysqlnetwork
+    depends_on:
+      mysql:
+        condition: service_healthy  # Wait for MySQL to be healthy
+    
+
+networks:
+  mysqlnetwork:
