@@ -1,5 +1,7 @@
 package com.school.mgnt.sys.school.management;
 
+import java.time.LocalDate;
+
 import lombok.Data;
 
 @Data
@@ -7,6 +9,8 @@ public class SchoolResponse {
 	private String message;
 
 	private int schoolId;
+
+	private String schoolCode;
 
 	private String schoolName;
 
@@ -16,10 +20,12 @@ public class SchoolResponse {
 
 	private String schoolAddress;
 
-	private String numberOfClass;
+	private String schoolType;
 
-	private String schoolsHours;
+	private String schoolTiming;
 
 	private String holidays;
+
+	private LocalDate createdDate;
 
 }

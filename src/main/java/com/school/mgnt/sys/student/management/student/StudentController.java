@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.websocket.server.PathParam;
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -18,9 +22,11 @@ public class StudentController {
 
 	@PostMapping("/addstudent/{schoolId}")
 	public ResponseEntity<StudentResponse> addStudent(@RequestBody StudentRequest studentRequest,
-			@PathVariable int schoolId) {
+			@PathVariable int schoolId,
+			@Parameter(description = "Study class ", required = true, schema = @Schema(allowableValues = { "1", "2",
+					"3", "4", "5", "6", "7", "8", "9" })) @PathParam(value = "studyClass") String studyClass) {
 
-		StudentResponse student = studentServices.addStudent(studentRequest, schoolId);
+		StudentResponse student = studentServices.addStudent(studentRequest, schoolId, studyClass);
 
 		return new ResponseEntity<StudentResponse>(student, HttpStatus.CREATED);
 	}

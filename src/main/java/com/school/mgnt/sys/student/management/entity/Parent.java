@@ -1,17 +1,19 @@
 package com.school.mgnt.sys.student.management.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "parents")
+
 public class Parent {
 
 	@Id
@@ -19,12 +21,21 @@ public class Parent {
 	private int parentId;
 
 	@OneToOne
-	@JoinColumn(name = "student_id", nullable = false)
+	@JoinColumn(name = "registration_id", nullable = false)
 	private Student student;
 
-	private String firstName;
-	private String lastName;
-	private String emailId;
+	private String parentFirstName;
+	private String parentLastName;
+	private String motherName;
+	private String parentOccupation;
+
+	@Email
+	@NotBlank
+	@Column(unique = true)
+	private String parentEmailId;
+
 	private String mobileNumber;
+
+	private String parentAddress;
 
 }

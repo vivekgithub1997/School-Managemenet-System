@@ -33,7 +33,7 @@ services:
       - mysqlnetwork
     depends_on:
       mysql:
-        condition: service_healthy  # Wait for MySQL to be healthy
+        condition: service_healthy  
     
 
 networks:

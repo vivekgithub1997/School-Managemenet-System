@@ -1,5 +1,7 @@
 package com.school.mgnt.sys.student.management.student;
 
+import java.time.LocalDate;
+
 import lombok.Data;
 
 @Data
@@ -7,11 +9,17 @@ public class StudentResponse {
 
 	private String message;
 
-	private int studentId;
+	private long registrationId;
 
 	private int schoolId;
 
 	private String schoolName;
+
+	private String schoolCode;
+
+	private String schoolType;
+
+	private String schoolTiming;
 
 	private String studentFirstName;
 
@@ -19,14 +27,20 @@ public class StudentResponse {
 
 	private String dateOfBirth;
 
+	private int age;
+
+	private String studyClass;
+
 	private String gender;
 
 	private String studentAddress;
 
-	private long emergencyNumber;
+	private LocalDate registrationDate;
 
 	private long mobileNumber;
 
-	private String parentEmail;
+	private String mobileNumberRelation;
+
+	private String studentEmail;
 
 }

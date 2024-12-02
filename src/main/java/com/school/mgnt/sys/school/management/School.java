@@ -1,28 +1,30 @@
 package com.school.mgnt.sys.school.management;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.school.mgnt.sys.student.management.entity.Classes;
 import com.school.mgnt.sys.student.management.entity.Student;
-import com.school.mgnt.sys.teacher.management.Teacher;
+import com.school.mgnt.sys.teacher.management.teacher.Teacher;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "school")
+
 @Data
 public class School {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int schoolId;
+
+	@Column(nullable = false, unique = true)
+	private String schoolCode;
 
 	private String schoolName;
 
@@ -32,13 +34,16 @@ public class School {
 
 	private String schoolAddress;
 
-	private String numberOfClass;
+	private String schoolType;
 
-	private String schoolsHours;
+	private String schoolTiming;
 
 	private String holidays;
 
-	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+	private LocalDate createdDate;
+
+	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<Student> student;
 
 	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL)

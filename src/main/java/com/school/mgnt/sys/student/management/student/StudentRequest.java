@@ -15,10 +15,8 @@ public class StudentRequest {
 
 	private String studentAddress;
 
-	private long emergencyNumber;
-
 	private long mobileNumber;
 
-	private String parentEmail;
+	private String mobileNumberRelation;
 
 }

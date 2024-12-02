@@ -1,4 +1,4 @@
-package com.school.mgnt.sys.teacher.management;
+package com.school.mgnt.sys.teacher.management.teacher;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import com.school.mgnt.sys.school.management.School;
 import com.school.mgnt.sys.student.management.entity.Classes;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,12 +32,28 @@ public class Teacher {
 	@JoinColumn(name = "school_id", nullable = false)
 	private School school;
 
+	private String schoolCode;
+	private String schoolName;
 	private String firstName;
 	private String lastName;
-	private String email;
+	private String emailId;
 	private String mobileNumber;
+	private String dateOfJoining;
+	private String qualification;
+	private String qualificationType;
+	private String dob;
+	private double salary;
+	private String availableStatus;
+	private String currentStaus;
 
-	@OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+	private String teacherType;
+
+	@ElementCollection
+	@CollectionTable(name = "teacher_subjects", joinColumns = @JoinColumn(name = "teacher_id"))
+	@Column(name = "subject_specialization")
+	private List<String> subjectSpecializations;
+
+	@OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Classes> classes;
 
 }
