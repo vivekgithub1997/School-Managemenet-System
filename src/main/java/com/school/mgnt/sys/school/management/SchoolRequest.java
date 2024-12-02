@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SchoolRequest {
-	
+
 	private String schoolName;
 
 	private long mobileNumber;
@@ -12,11 +12,5 @@ public class SchoolRequest {
 	private String emailId;
 
 	private String schoolAddress;
-
-	private String numberOfClass;
-
-	private String schoolsHours;
-
-	private String holidays;
 
 }

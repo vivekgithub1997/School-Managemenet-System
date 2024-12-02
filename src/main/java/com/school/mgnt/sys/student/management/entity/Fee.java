@@ -19,7 +19,7 @@ public class Fee {
     private int feeId;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
+    @JoinColumn(name = "registration_id", nullable = false)
     private Student student;
 
     private double amountDue;
